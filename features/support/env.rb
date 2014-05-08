@@ -7,6 +7,7 @@ require File.join(File.dirname(__FILE__), '..', '..', './server.rb')
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
+require 'database_cleaner'
 
 Capybara.app = Bookmark
 
@@ -18,4 +19,14 @@ end
 
 World do
   BookmarkWorld.new
+end
+
+DatabaseCleaner.strategy = :truncation
+
+Before do 
+	DatabaseCleaner.start
+end
+
+After do 
+	DatabaseCleaner.clean
 end
