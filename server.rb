@@ -20,6 +20,8 @@ class Bookmark < Sinatra::Base
   	@links = tags ? tags.links : []
   	erb :index
   end
+  	
+  
 
   post '/' do
   	tags = params["tags"].split(" ").map do |tag|
@@ -33,6 +35,22 @@ class Bookmark < Sinatra::Base
 	  	redirect to("/")
 	 end
 
+	get '/users/new' do 
+  	erb :new_users
+  end
+
+  post '/users/new' do
+  	email = params["email"]
+  	password = params["password"]
+  	puts email
+  	puts password
+  	# User.create(:email => email, :password => password)
+  end
+
+
   # start the server if ruby file executed directly
   run! if app_file == $0
+
+
+
 end
