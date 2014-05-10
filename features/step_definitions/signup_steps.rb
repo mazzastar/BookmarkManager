@@ -6,5 +6,8 @@ end
 
 Then(/^the first user email should be "(.*?)"$/) do |email|
   expect(User.first.email).to eq email
-  # pending # express the regexp above with the code you wish you had
+end
+
+Then(/^the user count should be (\d+)$/) do |arg1|
+  expect(User.count).to eq 0
 end

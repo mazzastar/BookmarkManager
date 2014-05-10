@@ -106,6 +106,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   capybara
   cucumber-sinatra
   data_mapper

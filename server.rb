@@ -1,3 +1,6 @@
+# enable :sessions
+# set :session_secret
+
 require 'sinatra/base'
 require 'data_mapper'
 require 'sinatra'
@@ -8,17 +11,24 @@ require './lib/link'
 require './lib/tag'
 require './lib/user'
 
-enable :sessions
-set :session_secret, 'super secret'
-
 DataMapper.finalize
 DataMapper.auto_upgrade!
+	# enable :sessions
+	# set :session_secret, 'super-secret'
+
 
 class Bookmark < Sinatra::Base
+	enable :sessions
+	set :session_secret, 'super-secret'
+
+
   get '/' do
+
+  	puts "Session id in  homepage is #{session[:user_id].inspect}"
+
     @links = Link.all
     puts "checking email"
-    puts User.first
+    puts User.first.inspect
     @email = User.first.email if !User.first.nil?
     erb :index
   end
@@ -38,7 +48,7 @@ class Bookmark < Sinatra::Base
 
 		url = params[:url]
 		title = params[:title]
-		puts url.inspect
+		# puts url.inspect
 		Link.create(:url => url, :title => title, :tags => tags)
 	  	redirect to("/")
 	 end
@@ -51,9 +61,8 @@ class Bookmark < Sinatra::Base
   post '/users' do
   	email = params["email"]
   	password = params["password"]
-
-  	puts "checking post #{email}, #{password}"
-		user = User.create(:email => email, :password => password)
+  	password_confirmation = params["password_confirmation"]
+		user = User.create(:email => email, :password => password, :password_confirmation =>password_confirmation )		
 		session[:user_id] = user.id
 		redirect to('/')	
   	 	# User.create(:email => email, :password => password)
@@ -62,7 +71,6 @@ class Bookmark < Sinatra::Base
   helpers do
   	def current_user 
   		@current_user||= User.get(session[:user_id])if session[:user_id]
-  	 puts "Current user =#{@current_user}"
   	end
   end
 

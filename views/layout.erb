@@ -1,6 +1,16 @@
-<body>
-  <% if current_user %>
-    Welcome, <%= current_user.email %>
-  <% end %>
-  <%= yield %>
-</body>
+<html>
+	<head>
+		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
+		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+	  <%= current_user.inspect %>
+	  <% if current_user %>
+
+	    Welcome, <%= current_user.email %>
+	  <% end %>
+	  <%= yield %>
+	</body>
+
+</html>
