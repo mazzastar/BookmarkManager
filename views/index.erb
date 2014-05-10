@@ -1,20 +1,30 @@
 <html>
 	<head>
+		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
+		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 	</head>
 
 <body>
 	<h1>Bookmark Manager</h1>
 
 	<form action='/' method="POST">
-		<input type="text" name="title">
-		<input type="text" name="url">
+		<input type="text" name="title" placeholder="name of website">
+		<input type="text" name="url" placeholder = "URL">
+		<input type="text" name="tags" placholder = "tags">
 		<button class="button" name="add" >add</button>
 	</form>
 
 
 	<ul>
 		<% @links.each do |link| %>
-		<li> <a href="<%= link.url %>"><%= link.title %></a></li>
+		<li>
+			<a href="<%= link.url %>"><%= link.title %></a>
+			<% link.tags.each do |tag|%>
+				<a href="/tags/<%= tag.tagname%>" class="tag">
+					<%=tag.tagname %>
+				</a>
+			<% end %>
+		</li>
 		<% end %>
 	</ul>
 

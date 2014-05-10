@@ -12,3 +12,12 @@ As a user
 	And I fill in "url" with "http://www.makersacademy.com"
 	And I click "add"
 	Then I should see "title_test" in a link
+
+	Scenario: With a couple of Tags
+	Given I am on the homepage
+	When I fill in "title" with "title_test"
+	And I fill in "url" with "http://www.makersacademy.com"
+	And I fill in the "tags" with "codeschool learning_course"
+	And I click "add"
+	Then I should see "codeschool"
+	And I should see "learning_course"
