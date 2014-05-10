@@ -5,6 +5,19 @@
 	</head>
 
 <body>
+ 
+	<% if !@email.nil? %>
+	<header>Welcome, <%= @email%></header>
+	<% end %>
+	
+
+	
+	<% if current_user %>
+		<!-- Welcome, <%= current_user.email %> -->
+	<% end %>
+	
+
+
 	<h1>Bookmark Manager</h1>
 
 	<form action='/' method="POST">

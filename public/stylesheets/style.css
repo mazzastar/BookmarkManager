@@ -229,7 +229,7 @@ ul:before, ul:after {
     border-bottom: 0;
     width: 48%;
 }
-
+/*
 ul:before {
     content: 'col1';
     border-right: 0;    
@@ -241,8 +241,8 @@ ul:after {
     top: 0;
     left: 48%;
     margin-left: 1px;    
-}
-
+}*/
+/*
 li {
     text-align: right;
     width: 48%;
@@ -253,4 +253,4 @@ li {
 
 li:nth-child(even) {
     margin-left: -1px;
-}	
+}	*/

@@ -3,7 +3,7 @@ In order to allow people to be registered on the site
 As a user
 
 	Scenario: When Logged Out
-	Given I am on the "users/new" page
+	Given I am on the "/users/new" page
 	When I fill in "email" with "alex@me.com"
 	And I fill in "password" with "password"
 	And I click "Sign Up"
