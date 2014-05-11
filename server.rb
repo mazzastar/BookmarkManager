@@ -4,6 +4,7 @@
 require 'sinatra/base'
 require 'data_mapper'
 require 'sinatra'
+require 'rack-flash'
 
 env = ENV["RACK_ENV"] || "development"
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
@@ -20,15 +21,12 @@ DataMapper.auto_upgrade!
 class Bookmark < Sinatra::Base
 	enable :sessions
 	set :session_secret, 'super-secret'
+	use Rack::Flash
+
 
 
   get '/' do
-
-  	puts "Session id in  homepage is #{session[:user_id].inspect}"
-
     @links = Link.all
-    puts "checking email"
-    puts User.first.inspect
     @email = User.first.email if !User.first.nil?
     erb :index
   end
@@ -48,13 +46,12 @@ class Bookmark < Sinatra::Base
 
 		url = params[:url]
 		title = params[:title]
-		# puts url.inspect
 		Link.create(:url => url, :title => title, :tags => tags)
-	  	redirect to("/")
+	  redirect to("/")
 	 end
 
 	get '/users/new' do 
-		puts "Sign up"
+		@user = User.new
   	erb :new_users
   end
 
@@ -62,10 +59,16 @@ class Bookmark < Sinatra::Base
   	email = params["email"]
   	password = params["password"]
   	password_confirmation = params["password_confirmation"]
-		user = User.create(:email => email, :password => password, :password_confirmation =>password_confirmation )		
-		session[:user_id] = user.id
-		redirect to('/')	
-  	 	# User.create(:email => email, :password => password)
+		@user = User.new(:email => email, :password => password, :password_confirmation =>password_confirmation )
+		
+		if @user.save
+			session[:user_id] = @user.id
+			redirect to('/')	
+		else
+			flash[:errors] = @user.errors.full_messages
+			erb :new_users
+		end
+
   end
 
   helpers do
