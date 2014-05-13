@@ -23,8 +23,6 @@ class Bookmark < Sinatra::Base
 	set :session_secret, 'super-secret'
 	use Rack::Flash
 
-
-
   get '/' do
     @links = Link.all
     @email = User.first.email if !User.first.nil?
@@ -36,8 +34,6 @@ class Bookmark < Sinatra::Base
   	@links = tags ? tags.links : []
   	erb :index
   end
-  	
-  
 
   post '/' do
   	tags = params["tags"].split(" ").map do |tag|
@@ -48,7 +44,7 @@ class Bookmark < Sinatra::Base
 		title = params[:title]
 		Link.create(:url => url, :title => title, :tags => tags)
 	  redirect to("/")
-	 end
+	end
 
 	get '/users/new' do 
 		@user = User.new
@@ -59,7 +55,7 @@ class Bookmark < Sinatra::Base
   	email = params["email"]
   	password = params["password"]
   	password_confirmation = params["password_confirmation"]
-		@user = User.new(:email => email, :password => password, :password_confirmation =>password_confirmation )
+		@user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation )
 		
 		if @user.save
 			session[:user_id] = @user.id
@@ -68,6 +64,26 @@ class Bookmark < Sinatra::Base
 			flash[:errors] = @user.errors.full_messages
 			erb :new_users
 		end
+
+  end
+
+  get '/sessions/new' do
+    # tags = Tag.first(:tagname => params[:text])
+    # @links = tags ? tags.links : []
+    erb :"sessions/new"
+  end
+
+  post '/sessions' do 
+    email = params["email"]
+    password = params["password"]
+    @user = User.authenticate(email, password)
+    if @user
+      session[:user_id] = @user.id
+      redirect to('/')
+    else
+      flash[:errors] = ["Unknown user-password combination"]
+      erb :"sessions/new"
+    end
 
   end
 

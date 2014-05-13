@@ -1,0 +1,19 @@
+<html>
+  <head>	
+  </head>
+    <body>
+      <% unless flash[:errors].nil? %>
+        <ul>
+          <% flash[:errors].each do |error|%>
+            <li> <%=error%> </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <form action='/sessions' method="POST">
+        Email: <input type='text' name='email'>
+        Password: <input type='password' name='password'>
+        <button class="button" name="Sign In">Sign In</button>
+      </form>
+    </body>
+</html>
+
