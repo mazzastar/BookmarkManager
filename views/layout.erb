@@ -1,16 +1,39 @@
-<html>
+<!-- <html>
 	<head>
 		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
 		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
-	</head>
+	</head> -->
 
 	<body>
-	  <%= current_user %>
-	  <% if current_user %>
+	 
 
-	    Welcome, <%= current_user.email %>
-	  <% end %>
-	  <%= yield %>
+
+
+	<%= yield %>
+	<% if current_user %>
+	Welcome, <%= current_user.email %>
+	<form method="post" action="/sessions">
+		<input type="hidden" name="_method" value="delete"/>
+		<input type="submit" value="Sign Out">
+	</form>
+	<% end %>
+
+	<% if flash[:notice] %>
+	<div id="notice">
+		<%= flash[:notice] %>
+	</div>
+	<% end %>
+	<% if flash[:errors] && !flash[:errors].empty? %>
+	Sorry, there were the following problems with the form.
+	<ul id="errors">
+		<% flash[:errors].each do |error| %>
+		<li><%= error %></li>
+		<% end %>
+	</ul>
+	<% end %>
+
+
+
 	</body>
 
-</html>
+<!-- </html> -->

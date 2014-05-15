@@ -21,6 +21,8 @@ DataMapper.auto_upgrade!
 class Bookmark < Sinatra::Base
 	enable :sessions
 	set :session_secret, 'super-secret'
+  enable :method_override
+
 	use Rack::Flash
 
   get '/' do
@@ -85,6 +87,12 @@ class Bookmark < Sinatra::Base
       erb :"sessions/new"
     end
 
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    # flash[:notice]
+    "Good bye!"
   end
 
   helpers do
