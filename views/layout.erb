@@ -1,14 +1,5 @@
-<!-- <html>
-	<head>
-		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
-		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
-	</head> -->
-
 	<body>
 	 
-
-
-
 	<%= yield %>
 	<% if current_user %>
 	Welcome, <%= current_user.email %>
@@ -23,6 +14,7 @@
 		<%= flash[:notice] %>
 	</div>
 	<% end %>
+	
 	<% if flash[:errors] && !flash[:errors].empty? %>
 	Sorry, there were the following problems with the form.
 	<ul id="errors">
@@ -35,5 +27,3 @@
 
 
 	</body>
-
-<!-- </html> -->

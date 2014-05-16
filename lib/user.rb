@@ -6,6 +6,7 @@ class User
 	property :id, Serial
 	property :email, String, :unique => true, :message => "This email is already taken"
 	property :password_digest, Text
+	property :token, String
 
 	attr_reader :password
 	attr_accessor :password_confirmation
@@ -22,6 +23,16 @@ class User
 		user = first(:email => email)
 				
 		if user && BCrypt::Password.new(user.password_digest)==password
+			user
+		else
+			nil
+		end
+	end
+
+	def self.recover_password(email)   
+		user = first(:email => email)
+		if user
+			user.token = SecureRandom.hex(32)
 			user
 		else
 			nil

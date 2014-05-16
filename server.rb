@@ -83,7 +83,7 @@ class Bookmark < Sinatra::Base
       session[:user_id] = @user.id
       redirect to('/')
     else
-      flash[:errors] = ["Unknown user-password combination"]
+      flash.now[:errors] = ["Unknown user-password combination"]
       erb :"sessions/new"
     end
 
@@ -91,8 +91,21 @@ class Bookmark < Sinatra::Base
 
   delete '/sessions' do
     session[:user_id] = nil
-    # flash[:notice]
-    "Good bye!"
+    flash.now[:notice]= "Good bye!"
+    erb :"sessions/new"
+  end
+
+  get '/sessions/recover' do
+    erb :"sessions/recover"
+  end
+
+  post '/sessions/recover' do 
+    # user = User.recover_password(param[:email])
+    # if user
+    #   #send an email to the user
+    # end
+    flash[:notice] = "Recovery email sent"
+    redirect to "/"
   end
 
   helpers do
