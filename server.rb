@@ -122,9 +122,6 @@ class Bookmark < Sinatra::Base
        # puts request.env["HTTP_HOST"]
         send_recovery_email( user.password_token, email, request.env["HTTP_HOST"])
 
-
-
-     
    else
       flash[:notice] = "No email found"
    end
@@ -134,11 +131,16 @@ class Bookmark < Sinatra::Base
 
   get "/users/reset_password/:token" do 
     user = User.first(password_token: params[:token])
-
-    # puts user.inspect
-
-    if Time.parse(user.password_token_timestamp.to_s)+3600  > Time.now
+    puts user.inspect
+    if user.nil?
+      flash[:notice] = "Invalid Token"
+      redirect to '/sessions/recover'
+    elsif Time.parse(user.password_token_timestamp.to_s)+3600  > Time.now
+      user.password_token = nil
+      user.password_token_timestamp = nil
+      user.save
       erb :"password/new_password"
+
     else
        flash[:notice] = "Token not used within the hour"
        redirect to '/sessions/recover'

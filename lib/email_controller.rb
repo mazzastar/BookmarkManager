@@ -8,7 +8,7 @@ module Email
 	  :from => "Mailgun Sandbox <postmaster@sandbox67c73ee0368549c9b5353e6f842414d4.mailgun.org>",
 	  :to => "#{email}",
 	  :subject => "Password Recovery for Bookmark manager",
-	  :text => "Recovery Token for #{email}: http://#{host}/reset_password/#{token}"
+	  :text => "Recovery Token for #{email}: http://#{host}/users/reset_password/#{token}"
 	end
 
 end
