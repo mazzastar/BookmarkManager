@@ -105,22 +105,20 @@ class Bookmark < Sinatra::Base
   end
 
   post '/sessions/recover' do 
-     email = params[:email]
+    email = params[:email]
     user = User.first(email: email)
-    # puts user.inspect
-    # user = User.recover_password(param[:email])
+    
    if user
       user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
       puts user.password_token
       user.password_token_timestamp = Time.now
-      # puts user.inspect
       user.save
-   #send an email to the user
+      
+      send_recovery_email( user.password_token, email, request.env["HTTP_HOST"])
+
+      #send an email to the user
       flash[:notice] = "Recovery email sent"
 
-       # puts request.inspect
-       # puts request.env["HTTP_HOST"]
-        send_recovery_email( user.password_token, email, request.env["HTTP_HOST"])
 
    else
       flash[:notice] = "No email found"
@@ -131,16 +129,12 @@ class Bookmark < Sinatra::Base
 
   get "/users/reset_password/:token" do 
     user = User.first(password_token: params[:token])
-    puts user.inspect
     if user.nil?
       flash[:notice] = "Invalid Token"
       redirect to '/sessions/recover'
     elsif Time.parse(user.password_token_timestamp.to_s)+3600  > Time.now
-      user.password_token = nil
-      user.password_token_timestamp = nil
-      user.save
-      erb :"password/new_password"
-
+      @token = params[:token]
+      erb :"password/reset_password"
     else
        flash[:notice] = "Token not used within the hour"
        redirect to '/sessions/recover'
@@ -148,14 +142,33 @@ class Bookmark < Sinatra::Base
 
   end
 
+  post "/users/reset_password" do 
+    puts params.inspect
+    begin 
+      params[:password] == params[:password_confirmation]
+      user = User.first(password_token: params[:token])
+      user.password_digest = BCrypt::Password.create(params[:password])
+      user.password_token = nil
+      user.password_token_timestamp = nil
+      user.save
+      flash[:notice] = "Password changed successfully, please log in again"
+      erb :"sessions/new"
+
+    rescue
+      flash[:notice] = "Unsuccessful change, please try again"
+      redirect to '/sessions/recover'
+    end
+    end
+
+  end
+
+
+
   helpers do
   	def current_user 
   		@current_user||= User.get(session[:user_id])if session[:user_id]
   	end
 
-    def gener
-      
-    end
 
   end
 
