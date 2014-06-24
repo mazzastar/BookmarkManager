@@ -11,11 +11,13 @@ DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 require './lib/link'
 require './lib/tag'
 require './lib/user'
+require_relative './lib/email_controller.rb'
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
 	# enable :sessions
 	# set :session_secret, 'super-secret'
+include Email
 
 
 class Bookmark < Sinatra::Base
@@ -26,6 +28,9 @@ class Bookmark < Sinatra::Base
 	use Rack::Flash
 
   get '/' do
+
+    puts session[:user_id].nil?
+
     @links = Link.all
     @email = User.first.email if !User.first.nil?
     erb :index
@@ -91,7 +96,7 @@ class Bookmark < Sinatra::Base
 
   delete '/sessions' do
     session[:user_id] = nil
-    flash.now[:notice]= "Good bye!"
+    flash.now[:notice]= "Goodbye!"
     erb :"sessions/new"
   end
 
@@ -100,18 +105,56 @@ class Bookmark < Sinatra::Base
   end
 
   post '/sessions/recover' do 
+     email = params[:email]
+    user = User.first(email: email)
+    # puts user.inspect
     # user = User.recover_password(param[:email])
-    # if user
-    #   #send an email to the user
-    # end
-    flash[:notice] = "Recovery email sent"
-    redirect to "/"
+   if user
+      user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+      puts user.password_token
+      user.password_token_timestamp = Time.now
+      # puts user.inspect
+      user.save
+   #send an email to the user
+      flash[:notice] = "Recovery email sent"
+
+       # puts request.inspect
+       # puts request.env["HTTP_HOST"]
+        send_recovery_email( user.password_token, email, request.env["HTTP_HOST"])
+
+
+
+     
+   else
+      flash[:notice] = "No email found"
+   end
+   redirect to "/"
+
+  end
+
+  get "/users/reset_password/:token" do 
+    user = User.first(password_token: params[:token])
+
+    # puts user.inspect
+
+    if Time.parse(user.password_token_timestamp.to_s)+3600  > Time.now
+      erb :"password/new_password"
+    else
+       flash[:notice] = "Token not used within the hour"
+       redirect to '/sessions/recover'
+    end
+
   end
 
   helpers do
   	def current_user 
   		@current_user||= User.get(session[:user_id])if session[:user_id]
   	end
+
+    def gener
+      
+    end
+
   end
 
 
