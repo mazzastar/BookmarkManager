@@ -7,6 +7,7 @@ class User
 	property :email, String, :unique => true, :message => "This email is already taken"
 	property :password_digest, Text
 	property :token, String
+	property :token_timestamp, Time
 
 	attr_reader :password
 	attr_accessor :password_confirmation
@@ -33,6 +34,8 @@ class User
 		user = first(:email => email)
 		if user
 			user.token = SecureRandom.hex(32)
+			user.token_timestamp = Time.now
+			user.save
 			user
 		else
 			nil

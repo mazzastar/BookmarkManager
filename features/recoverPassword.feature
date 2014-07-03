@@ -16,6 +16,6 @@ As A user
 	Scenario: User supplies email
 	Given I am on the "/sessions/recover" page
 	And there exists a user has login details "test@test.com" and "password"
-	When I fill in "email" with "test@test.com""
+	When I fill in "email" with "test@test.com"
 	And I click "Recover"
 	Then I should see "Recovery email sent"

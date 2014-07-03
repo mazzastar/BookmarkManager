@@ -100,10 +100,11 @@ class Bookmark < Sinatra::Base
   end
 
   post '/sessions/recover' do 
-    # user = User.recover_password(param[:email])
-    # if user
+    user = User.recover_password(params[:email])
+    if user
     #   #send an email to the user
-    # end
+    
+    end
     flash[:notice] = "Recovery email sent"
     redirect to "/"
   end

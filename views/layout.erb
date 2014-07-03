@@ -1,19 +1,35 @@
-	<body>
-	 
-	<%= yield %>
-	<% if current_user %>
-	Welcome, <%= current_user.email %>
-	<form method="post" action="/sessions">
-		<input type="hidden" name="_method" value="delete"/>
-		<input type="submit" value="Sign Out">
-	</form>
-	<% end %>
+	<head>
+	  <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">  
+	  <link rel="stylesheet" href="/stylesheets/style.css">
 
-	<% if flash[:notice] %>
-	<div id="notice">
-		<%= flash[:notice] %>
+	</head>
+	<header>
+
+		<div id="logo">Bookmark Manager</div>
+			<% unless current_user %>
+		  	<a class="button" href="/users/new">Sign Up</a>
+		  	<a class="button" href="/sessions/new">Log in</a>
+		  <% end %>
+	</header>
+	
+	<body>
+	<div id="user-links">
+		<% if current_user %>
+			<span id="welcome-message"> Welcome, <%= current_user.email %></span>
+			<form method="post" action="/sessions">
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" value="Sign Out">
+			</form>
+		<% else %>
+
+		<% end %>
+	
+		<% if flash[:notice] %>
+			<div id="notice">
+				<%= flash[:notice] %>
+			</div>
+		<% end %>
 	</div>
-	<% end %>
 	
 	<% if flash[:errors] && !flash[:errors].empty? %>
 	Sorry, there were the following problems with the form.
@@ -25,5 +41,6 @@
 	<% end %>
 
 
+	<%= yield %>
 
 	</body>

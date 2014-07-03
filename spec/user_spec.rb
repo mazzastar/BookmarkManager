@@ -21,8 +21,9 @@ describe User do
   context "retrieve user password from db" do 
     it "should return something when an email is provided" do 
       User.create(:email=> "t@t.com", :password => "t", :password_confirmation => "t")
-      user2 = User.recover_password("t@t.com")
-      expect(user2).not_to be_nil
+      user = User.recover_password("t@t.com")
+      expect(user).not_to be_nil
+
     end
   end
 

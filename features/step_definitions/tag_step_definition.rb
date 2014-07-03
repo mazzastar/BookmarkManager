@@ -15,9 +15,10 @@ end
 
 
 Then(/^I should only see "(.*?)" and "(.*?)" with the associated links with the tag and not "(.*?)" or "(.*?)"$/) do |arg1, arg2, arg3, arg4|
-  page.should have_link "google"
-  page.should have_link "bing"
-  page.should have_no_content "makers"
+  page.should have_link arg1
+  page.should have_link arg2
+  page.should have_no_content arg3
+  page.should have_no_content arg4
 end
 
 
