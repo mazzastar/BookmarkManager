@@ -1,23 +1,29 @@
-<!-- <html>
 	<head>
 		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
 		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 	</head>
 
 <body>
-  -->
-
-	
-
-
-
-  <br>
-	<form action='/' method="POST">
-		<input type="text" name="title" placeholder="name of website">
-		<input type="text" name="url" placeholder = "URL">
-		<input type="text" name="tags" placholder = "tags">
-		<button class="button" name="add" >add</button>
+ 
+	<% unless current_user %>
+	<form>	
+		<a class="btn" href="/sessions/new">Login</a>
+		<a class="btn" href="/users/new">Sign Up</a>
 	</form>
+	<% end %>
+	
+	<h1>Bookmark Manager</h1>
+	<div>
+		<form action='/' method="POST">
+			<label> Title </label>
+			<input type="text" name="title" placeholder="name of website">
+			<label> URL </label>
+			<input type="text" name="url" placeholder = "URL">
+			<label> Text </label>
+			<input type="text" name="tags" placholder = "tags">
+			<button class="button" name="add" >add</button>
+		</form>
+	</div>
 
 
 	<ul>
@@ -41,5 +47,3 @@
 	</ul>
 
 </body>
-<!-- 
-</html> -->
