@@ -3,6 +3,15 @@ Given(/^I have a registered user$/) do
   sign_in("text@text.com", "password")
 end
 
+When(/^I click on "(.*?)"$/) do |arg1|
+  find_button(arg1).click 
+end
+
+When(/^I click link "(.*?)"$/) do |arg1|
+	click_link('Add Link')
+end
+
+
 When(/^I am logged in$/) do
 	sign_in("text@text.com", "password")
 end

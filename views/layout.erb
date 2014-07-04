@@ -1,6 +1,8 @@
 	<head>
 	  <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">  
 	  <link rel="stylesheet" href="/stylesheets/style.css">
+	  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	  <script src="/javascript/application.js"></script>
 
 	</head>
 	<header>
@@ -8,7 +10,11 @@
 		<div id="logo">Bookmark Manager</div>
 			<% unless current_user %>
 		  	<a class="button" href="/users/new">Sign Up</a>
-		  	<a class="button" href="/sessions/new">Log in</a>
+		  	<a class="button" href="/sessions/new">Log In</a>
+		  	<a href="/links/new" class="button highlighted">Add Link</a>
+		  <% else %>
+		  	<a href="/links/new" class="button highlighted">Add Link</a>
+
 		  <% end %>
 	</header>
 	

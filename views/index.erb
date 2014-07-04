@@ -6,26 +6,15 @@
 <body>
  
 	<% unless current_user %>
-	<form>	
+	<!-- <form>	
 		<a class="btn" href="/sessions/new">Login</a>
 		<a class="btn" href="/users/new">Sign Up</a>
-	</form>
+		<a class="btn" href="/links/new" class="button highlighted">Add link</a>
+
+	</form> -->
 	<% end %>
 	
 	<h1>Bookmark Manager</h1>
-	<div>
-		<form action='/' method="POST">
-			<label> Title </label>
-			<input type="text" name="title" placeholder="name of website">
-			<label> URL </label>
-			<input type="text" name="url" placeholder = "URL">
-			<label> Tags </label>
-			<input type="text" name="tags" placholder = "tags">
-			<label> Description</label>
-			<input type="text" name="description" placholder = "description text">
-			<button class="button" name="add" >add</button>
-		</form>
-	</div>
 
 
 	<ul>
