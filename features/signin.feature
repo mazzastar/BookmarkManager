@@ -18,11 +18,13 @@ As a user
 
 	
 	Scenario: When logged out with incorrect correct credentials and attempting to enter in a link
-	Given I am on the homepage
-	When I click link "Add Link" 
-	And I fill in "title" with "title_test"
+	Given I am on the "/links/new" page
+	When I fill in "title" with "title_test"
 	And I fill in "url" with "http://www.makersacademy.com"
 	And I click "add"
 	Then I should see "Not logged in"
 
+	Scenario: When logged out, I should not see the "Add Links" link
+	Given I am on the homepage
+	Then I should not see "Add Link"
  

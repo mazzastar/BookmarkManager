@@ -41,6 +41,9 @@ When(/^I fill in the "(.*?)" with "(.*?)"$/) do |tags, tagString|
 	fill_in tags, with: tagString
 end
 
+Then(/^I should not see "(.*?)"$/) do |arg1|
+  page.should_not have_content arg1
+end
 
 # When(/^I fill in the "(.*?)" with \["(.*?)", "(.*?)"\]$/) do |tags, tag1, tag2|
 #   fill_in 'tags', :with => tags.join(' ')
