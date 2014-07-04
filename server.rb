@@ -32,6 +32,11 @@ class Bookmark < Sinatra::Base
     puts session[:user_id].nil?
 
     @links = Link.all
+
+    @links.each do |link| 
+      puts link.tags
+    end
+    
     @email = User.first.email if !User.first.nil?
     erb :index
   end
@@ -49,7 +54,8 @@ class Bookmark < Sinatra::Base
 
 		url = params[:url]
 		title = params[:title]
-		Link.create(:url => url, :title => title, :tags => tags)
+    description = params[:description]
+		link = Link.create(:url => url, :title => title, :tags => tags, :description => description, :user => current_user)
 	  redirect to("/")
 	end
 

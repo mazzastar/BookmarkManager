@@ -5,3 +5,7 @@ class Tag
 	property :tagname, String
 	has n, :links, :through => Resource
 end
+
+# DataMapper.finalize
+ # DataMapper.auto_migrate!
+# DataMapper.auto_upgrade!

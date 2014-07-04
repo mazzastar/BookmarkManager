@@ -9,13 +9,13 @@ class User
 
 	property :password_token, Text
 	property :password_token_timestamp, DateTime
-	
+
 	attr_reader :password
 	attr_accessor :password_confirmation
 
 	validates_uniqueness_of :email
 	validates_confirmation_of :password
-
+	has n, :links
 
 	def password=(password)
 		@password = password
@@ -45,3 +45,7 @@ class User
 	end
 
 end
+# DataMapper.finalize
+ # DataMapper.auto_migrate!
+# DataMapper.auto_upgrade!
+

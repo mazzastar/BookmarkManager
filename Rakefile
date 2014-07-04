@@ -1,5 +1,5 @@
-# require 'data_mapper'
-# require './app/data_mapper_setup'
+require 'data_mapper'
+require './app/data_mapper_setup'
 
 
 # task :auto_upgrade do
@@ -17,7 +17,7 @@
 require 'data_mapper'
 
 task :before do
-  raise "RAKE_ENV has not been specified" unless ENV.has_key?('RACK_ENV')
+  raise "RACK_ENV has not been specified" unless ENV.has_key?('RACK_ENV')
 end
 
 namespace :db do

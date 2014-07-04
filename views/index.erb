@@ -19,8 +19,10 @@
 			<input type="text" name="title" placeholder="name of website">
 			<label> URL </label>
 			<input type="text" name="url" placeholder = "URL">
-			<label> Text </label>
+			<label> Tags </label>
 			<input type="text" name="tags" placholder = "tags">
+			<label> Description</label>
+			<input type="text" name="description" placholder = "description text">
 			<button class="button" name="add" >add</button>
 		</form>
 	</div>
@@ -28,12 +30,14 @@
 
 	<ul>
 		<% @links.each do |link| %>
+		<%= link.tags.inspect %>
+		<%= link.user_id.inspect %>
 		<li class='link'>
 			<a class='title' href="<%= link.url %>"><%= link.title %></a>
 			<div class='description'>
-    			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				<%= link.description %>
   		</div>
-  		<span class='source'> added yesterday by <a href="#">evgeny@makersacademy.com</a>
+  		<span class='source'> added yesterday by <a href="#"><%= link.user.email%></a>
   		</span>
 
 
