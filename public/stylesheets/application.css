@@ -12,3 +12,7 @@ header #logo {
   display: flex;  
   font-family: Helvetica, Arial, Sans-serif;
 }
+
+a.button.highlighted {
+  background-color: #b77843;
+}

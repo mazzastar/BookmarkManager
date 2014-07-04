@@ -1,40 +1,7 @@
-	<head>
-		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
-		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
-	</head>
-
-<body>
- 
-	<% unless current_user %>
-	<!-- <form>	
-		<a class="btn" href="/sessions/new">Login</a>
-		<a class="btn" href="/users/new">Sign Up</a>
-		<a class="btn" href="/links/new" class="button highlighted">Add link</a>
-
-	</form> -->
-	<% end %>
-	
-	<h1>Bookmark Manager</h1>
-
-
-	<ul>
+<div id='links-container'>
+	<ul id='links'>
 		<% @links.each do |link| %>
-		<li class='link'>
-			<a class='title' href="<%= link.url %>"><%= link.title %></a>
-			<div class='description'>
-				<%= link.description %>
-  		</div>
-  		<span class='source'> added yesterday by <a href="/user/<%= link.user.email%>/posts"><%= link.user.email%></a>
-  		</span>
-
-
-			<% link.tags.each do |tag|%>
-				<a href="/tags/<%= tag.tagname%>" class="tag">
-					<%=tag.tagname %>
-				</a>
-			<% end %>
-		</li>
+			<%= erb :"links/link",   :locals => {:link => link}%>
 		<% end %>
 	</ul>
-
-</body>
+</div>

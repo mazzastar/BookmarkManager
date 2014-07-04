@@ -1,0 +1,14 @@
+<li class='link'>
+	<a class='title' href="<%= link.url %>"><%= link.title %></a>
+		<div class='description'>
+			<%= link.description %>
+  		</div>
+  		<span class='source'> added yesterday by <a href="/user/<%= link.user.email%>/posts"><%= link.user.email%></a>
+  		</span>
+
+		<% link.tags.each do |tag|%>
+			<a href="/tags/<%= tag.tagname%>" class="tag">
+				<%=tag.tagname %>
+			</a>
+		<% end %>
+</li>

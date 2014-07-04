@@ -3,58 +3,23 @@
 	  <link rel="stylesheet" href="/stylesheets/style.css">
 	  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 	  <script src="/javascript/application.js"></script>
-
 	</head>
 	<header>
-
 		<div id="logo">Bookmark Manager</div>
 			<% unless current_user %>
 		  	<a class="button" href="/users/new">Sign Up</a>
 		  	<a class="button" href="/sessions/new">Log In</a>
-<!-- 		  	<a href="/links/new" class="button highlighted">Add Link</a>
- -->		<% else %>
+			<% else %>
 		  	<a href="/links/new" class="button highlighted">Add Link</a>
-
 		  <% end %>
 	</header>
 	
 	<body>
 	<div id="user-links">
-		<% if current_user %>
-			<span id="welcome-message"> Welcome, <%= current_user.email %></span>
-			<form method="post" action="/sessions">
-				<input type="hidden" name="_method" value="delete"/>
-				<input type="submit" value="Sign Out">
-			</form>
-		<% else %>
-	 
-			<% if current_user %>
-			Welcome, <%= current_user.email %>
-			<form method="post" action="/sessions">
-				<input type="hidden" name="_method" value="delete"/>
-				<input type="submit" value="Sign Out">
-			</form>
-
-			<% end %>
-
-		<% end %>
-	
-		<% if flash[:notice] %>
-			<div id="notice">
-				<%= flash[:notice] %>
-			</div>
-		<% end %>
+		<%= erb :header %>
+		<%= erb :flash %>
 	</div>
 	
-	<% if flash[:errors] && !flash[:errors].empty? %>
-	Sorry, there were the following problems with the form.
-	<ul id="errors">
-		<% flash[:errors].each do |error| %>
-		<li><%= error %></li>
-		<% end %>
-	</ul>
-	<% end %>
-
 	<%= yield %>
 
 

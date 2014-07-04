@@ -4,6 +4,8 @@
 require 'sinatra/base'
 require 'data_mapper'
 require 'sinatra'
+require 'sinatra/partial'
+
 require 'rack-flash'
 
 env = ENV["RACK_ENV"] || "development"

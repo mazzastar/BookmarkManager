@@ -24,7 +24,6 @@ Then(/^I should see "(.*?)"$/) do |arg1|
   page.should have_content arg1
 end
 
-
 When(/^I fill in "(.*?)" with "(.*?)"$/) do |name, value|
   fill_in name, with: value
 end
