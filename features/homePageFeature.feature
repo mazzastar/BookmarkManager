@@ -2,6 +2,10 @@ Feature: Bookmarks are saved
 In order to access favourite pages quickly
 As a user
 
+Background:
+Given I have a registered user 
+When I am logged in
+
 	Scenario: View home page
 	Given I am on the homepage 
 	Then I should see "Bookmark Manager"

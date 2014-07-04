@@ -28,15 +28,7 @@ class Bookmark < Sinatra::Base
 	use Rack::Flash
 
   get '/' do
-
-    puts session[:user_id].nil?
-
     @links = Link.all
-
-    @links.each do |link| 
-      puts link.tags
-    end
-    
     @email = User.first.email if !User.first.nil?
     erb :index
   end
@@ -47,16 +39,27 @@ class Bookmark < Sinatra::Base
   	erb :index
   end
 
-  post '/' do
-  	tags = params["tags"].split(" ").map do |tag|
-  		Tag.first_or_create(:tagname => tag)
-		end
+  get '/user/:email/posts' do
+    user = User.first(:email => params[:email])
+    @links = user ? user.links : []
+    erb :index
+  end
 
-		url = params[:url]
-		title = params[:title]
-    description = params[:description]
-		link = Link.create(:url => url, :title => title, :tags => tags, :description => description, :user => current_user)
-	  redirect to("/")
+  post '/' do
+
+    unless session[:user_id].nil?
+    	tags = params["tags"].split(" ").map do |tag|
+    		Tag.first_or_create(:tagname => tag)
+  		end
+
+  		url = params[:url]
+  		title = params[:title]
+      description = params[:description]
+  		link = Link.create(:url => url, :title => title, :tags => tags, :description => description, :user => current_user)
+    else
+      flash[:errors] = ["Not logged in"]
+    end
+      redirect to("/")
 	end
 
 	get '/users/new' do 
@@ -139,7 +142,6 @@ class Bookmark < Sinatra::Base
   end
 
   post "/users/reset_password" do 
-    puts params.inspect
     begin 
       params[:password] == params[:password_confirmation]
       user = User.first(password_token: params[:token])

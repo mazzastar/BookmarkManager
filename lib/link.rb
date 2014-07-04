@@ -11,7 +11,3 @@ class Link
 	belongs_to :user
 	has n, :tags, :through => Resource
 end
- # DataMapper.finalize
- # DataMapper.auto_migrate!
- # DataMapper.auto_upgrade!
-

@@ -2,6 +2,10 @@ Feature: We can view links associated by Tags
 In order to see what I associated by topic
 As a user
 
+Background:
+Given I have a registered user 
+When I am logged in
+
 	Scenario: Filtering links by tags
 	Given I have four links and two have the same tag:
 	|title 			  |url							|tags                  	|

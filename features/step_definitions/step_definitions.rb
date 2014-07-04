@@ -1,9 +1,17 @@
+Given(/^I have a registered user$/) do
+  user = User.create(:email => "text@text.com", :password => "password", :password_confirmation => "password")
+  sign_in("text@text.com", "password")
+end
+
+When(/^I am logged in$/) do
+	sign_in("text@text.com", "password")
+end
+
 Given(/^I am on the homepage$/) do
   visit '/'
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|
-
   page.should have_content arg1
 end
 

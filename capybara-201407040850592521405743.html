@@ -1,16 +1,37 @@
 	<head>
+	  <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">  
+	  <link rel="stylesheet" href="/stylesheets/style.css">
+
+	</head>
+	<header>
+
+		<div id="logo">Bookmark Manager</div>
+			
+	</header>
+	
+	<body>
+	<div id="user-links">
+		
+			<span id="welcome-message"> Welcome, text@text.com</span>
+			<form method="post" action="/sessions">
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" value="Sign Out">
+			</form>
+		
+	
+		
+	</div>
+	
+	
+
+		<head>
 		<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
 		<link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 	</head>
 
 <body>
  
-	<% unless current_user %>
-	<form>	
-		<a class="btn" href="/sessions/new">Login</a>
-		<a class="btn" href="/users/new">Sign Up</a>
-	</form>
-	<% end %>
+	
 	
 	<h1>Bookmark Manager</h1>
 	<div>
@@ -29,23 +50,12 @@
 
 
 	<ul>
-		<% @links.each do |link| %>
-		<li class='link'>
-			<a class='title' href="<%= link.url %>"><%= link.title %></a>
-			<div class='description'>
-				<%= link.description %>
-  		</div>
-  		<span class='source'> added yesterday by <a href="/user/<%= link.user.email%>/posts"><%= link.user.email%></a>
-  		</span>
-
-
-			<% link.tags.each do |tag|%>
-				<a href="/tags/<%= tag.tagname%>" class="tag">
-					<%=tag.tagname %>
-				</a>
-			<% end %>
-		</li>
-		<% end %>
+		
 	</ul>
 
 </body>
+
+
+
+
+	</body>

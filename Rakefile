@@ -12,8 +12,6 @@ require './app/data_mapper_setup'
 # 	puts "Auto-migrate complete (data could have been lost)"
 # end
 
-
-
 require 'data_mapper'
 
 task :before do
