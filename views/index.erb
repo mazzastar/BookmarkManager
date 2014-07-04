@@ -30,8 +30,6 @@
 
 	<ul>
 		<% @links.each do |link| %>
-		<%= link.tags.inspect %>
-		<%= link.user_id.inspect %>
 		<li class='link'>
 			<a class='title' href="<%= link.url %>"><%= link.title %></a>
 			<div class='description'>
