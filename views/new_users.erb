@@ -14,7 +14,8 @@
 	<% end %>
 	
 	<form action='/users' method="POST">
-		Email: <input type="text" name="email" placeholder="email" value = <%= @user.email%>>
+		Username: <input type="text" name="username" placeholder="username">
+		Email: <input type="text" name="email" placeholder="email" value=<%= @user.email%>>
 		Password: <input type="text" name="password" placeholder="password">
 		Password Confirmation: <input type="text" name="password_confirmation" placeholder="password_confirmation">
 		

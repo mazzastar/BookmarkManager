@@ -2,11 +2,16 @@ require "spec_helper"
 require "tag"
 
 describe Link do
+
+	before(:all) do 
+		@user = User.create(:username => "Alex", :email => "alex@me2.com",  :password => "password", :password_confirmation => "password")
+	end
+
   context "Demostration of how Datamapper works" do
 	it "should be created then retrieved from the db" do
 		expect(Link.count).to eq 0
 		Link.create(:title => "Makers Academy",
-					:url => "http://www.makersacademy.com/")
+					:url => "http://www.makersacademy.com/", :user => @user)
 		expect(Link.count).to eq 1
 		link = Link.first
 		expect(link.url).to eq "http://www.makersacademy.com/"
@@ -24,7 +29,7 @@ describe Link do
 
 		Link.create(:title => "Makers Academy",
 					:url => "http://www.makersacademy.com/",
-					:tags => tags)
+					:tags => tags, :user=> @user)
 		expect(Link.count).to eq 1
 		link = Link.first
 		expect(link.url).to eq "http://www.makersacademy.com/"

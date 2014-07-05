@@ -74,10 +74,11 @@ class Bookmark < Sinatra::Base
   end
 
   post '/users' do
+    username = params["username"]
   	email = params["email"]
   	password = params["password"]
   	password_confirmation = params["password_confirmation"]
-		@user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation )
+		@user = User.new(:username => username, :email => email, :password => password, :password_confirmation => password_confirmation )
 		
 		if @user.save
 			session[:user_id] = @user.id
