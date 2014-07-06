@@ -17,6 +17,7 @@ When I am logged in
 	And I fill in "url" with "http://www.makersacademy.com"
 	And I click "add"
 	Then I should see "title_test" in a link
+	And I should see "Meme"
 
 	Scenario: With a couple of Tags
 	Given I am on the homepage

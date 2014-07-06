@@ -1,18 +1,4 @@
-<html>
 
-<head></head>
-
-<body>
-	<% if flash[:errors] && !flash[:errors].empty? %>
-	  Sorry, there were the following problems with the form. 
-
-	 <ul id="errors">
-	 	<% flash[:errors].each do |error| %>
-	 		<li><%= error %></li>
-	 	<% end %>
-	 </ul>
-	<% end %>
-	
 	<form action='/users' method="POST">
 		Username: <input type="text" name="username" placeholder="username">
 		Email: <input type="text" name="email" placeholder="email" value=<%= @user.email%>>
@@ -22,7 +8,3 @@
 		<button class="button" name="Sign Up" >Sign Up</button>
 
 	</form>
-</body>
-
-
-</html>

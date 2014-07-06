@@ -1,5 +1,5 @@
 Given(/^I have a registered user$/) do
-  user = User.create(:email => "text@text.com", :password => "password", :password_confirmation => "password")
+  user = User.create(:username => "Meme", :email => "text@text.com", :password => "password", :password_confirmation => "password")
   sign_in("text@text.com", "password")
 end
 
