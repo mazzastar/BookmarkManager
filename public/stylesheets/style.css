@@ -70,7 +70,25 @@ a.button.highlighted {
   /* for left and right */
   margin: 10px inherit;
   padding: 15px 10px;
+  display: none;
+  position: relative;
+
 }
+
+.link .star {
+    /* absolute but relative to the first parent that's relative */
+    position: absolute;
+    font-size: 24px;
+    right: 5px;
+    top: 5px;
+    color: yellowgreen;
+    cursor: pointer;
+  }
+
+.link .star.solid {
+    opacity: 0; /* not hidden (nonexistent), just invisible */
+  }
+
 
   .link a.title {
     /* to make it slightly more prominent */
@@ -117,7 +135,7 @@ footer {
   box-sizing: border-box;
 }
 
-.flash-notice .flash-errors{
+.flash-notice .flash-errors {
   text-align: center;
   margin: 5px;
   padding: 5px;
