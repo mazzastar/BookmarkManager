@@ -6,8 +6,8 @@
 	<header>
 		<div id="logo">Bookmark Manager</div>
 			<% unless current_user %>
-		  	<a class="button" href="/users/new">Sign Up</a>
-		  	<a class="button" href="/sessions/new">Log In</a>
+		  	<a class="button new-user" href="/users/new">Sign Up</a>
+		  	<a class="button new-session" href="/sessions/new">Log In</a>
 			<% else %>
 		  	<a href="/links/new" class="add-link button highlighted">Add Link</a>
 		  <% end %>

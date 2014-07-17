@@ -70,7 +70,7 @@ class Bookmark < Sinatra::Base
 
 	get '/users/new' do 
 		@user = User.new
-  	erb :new_users
+  	erb :new_users, :layout => !request.xhr?
   end
 
   post '/users' do
@@ -93,7 +93,7 @@ class Bookmark < Sinatra::Base
   get '/sessions/new' do
     # tags = Tag.first(:tagname => params[:text])
     # @links = tags ? tags.links : []
-    erb :"sessions/new"
+    erb :"sessions/new", :layout => !request.xhr?
   end
 
   post '/sessions' do 
