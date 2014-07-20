@@ -32,7 +32,7 @@ class Bookmark < Sinatra::Base
   get '/' do
     @links = Link.all
     @email = User.first.email if !User.first.nil?
-    erb :index
+    erb :index,  :layout => !request.xhr?
   end
 
   get '/tags/:text' do

@@ -1,7 +1,7 @@
 <div id='links-container'>
 	<ul id='links'>
 		<% @links.each do |link| %>
-			<%= erb :"links/link",   :locals => {:link => link}%>
+			<%= erb :"links/link", :locals => {:link => link}%>
 		<% end %>
 	</ul>
 </div>
