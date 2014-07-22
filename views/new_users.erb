@@ -1,10 +1,31 @@
-
-	<form action='/users' method="POST">
-		Username: <input type="text" name="username" placeholder="username">
-		Email: <input type="text" name="email" placeholder="email" value=<%= @user.email%>>
-		Password: <input type="text" name="password" placeholder="password">
-		Password Confirmation: <input type="text" name="password_confirmation" placeholder="password_confirmation">
-		
-		<button class="button" name="Sign Up" >Sign Up</button>
-
-	</form>
+<form action='/users' method="POST">
+	<div> 
+		<div class="alignLeft">
+		<label>
+			Username:
+		</label>
+		</div>
+		<input type="text" name="username" placeholder="username">  
+	</div>
+	<div>
+		<div class="alignLeft">
+		<label> Email: </label></div>
+		<input type="text" name="email" placeholder="email" value=<%= @user.email%>>
+	</div>
+	<div> 
+		<div class="alignLeft">
+			<label> Password:</label> 
+		</div>
+		<input type="text" name="password" placeholder="password">
+	</div>
+	<div> 
+		<div class="alignLeft">
+		<label> Password Confirmation: </label>
+		</div>
+		<input type="text" name="password_confirmation" placeholder="password_confirmation">
+	</div>
+	<div>
+		<button class="button" name="Sign Up">Sign Up</button>
+	</div>
+</form>
+<br clear='all'>

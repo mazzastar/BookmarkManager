@@ -27,8 +27,27 @@ header #logo {
     text-decoration: none;
     font-size: 24
 
+}
+
+header .button{
+  height: 100%;
+  font-size: 18px;
+  padding-left: 10px;
+  width: 100px;
 
 
+  border-right: #a9a9a9 2px solid;
+  padding-right: 2px;
+  border-top: #a9a9a9 2px solid;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  border-left: #a9a9a9 2px solid;
+  padding-top: 2px;
+  border-bottom: #a9a9a9 2px solid;
+}
+
+form{
+  display: block;
 }
 
 form input{
@@ -41,9 +60,22 @@ form input{
 
 }
 
-/*form .button{
-	font-family: Helvetica, Arial, Sans-serif;
 
+input[type="submit"]
+{
+  border-right: #a9a9a9 2px solid;
+  padding-right: 2px;
+  border-top: #a9a9a9 2px solid;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  border-left: #a9a9a9 2px solid;
+  padding-top: 2px;
+  border-bottom: #a9a9a9 2px solid;
+}
+
+/*form input .button{
+	font-family: Helvetica, Arial, Sans-serif;
+border:5px solid red;
 	padding-top: 15px;
     padding-bottom: 25px;
     padding-right: 20px;
@@ -151,3 +183,30 @@ footer {
   box-shadow: 0 0 5px rgba(0,0,0,0.4);
   padding: 10px;
 }
+
+label, .left{
+    width: 10%;
+    float: left;
+    text-align: left;
+}
+
+label, .alignLeft{
+    width: 10%;
+    float: left;
+    text-align: left;
+    padding: 1%;
+}
+
+.alignRight{
+    vertical-align: middle;
+}
+
+
+/*input {
+    width: 65%;
+    margin-left: 10px;
+    float:left;
+}*/
+
+
+

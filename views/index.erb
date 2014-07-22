@@ -1,7 +1,9 @@
 <div id='links-container'>
+	<div>
 	<ul id='links'>
 		<% @links.each do |link| %>
 			<%= erb :"links/link", :locals => {:link => link}%>
 		<% end %>
 	</ul>
+	</div>
 </div>

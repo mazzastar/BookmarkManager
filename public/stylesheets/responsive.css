@@ -1,0 +1,32 @@
+@media(max-width: 620px) {
+  #links-container {
+    margin: 10px;
+    background-color: red;
+  }
+
+   footer, .footer, .push {
+    height: 130px;
+  }
+
+  .wrapper {
+    margin-bottom: -130px;
+  }
+
+  .button {
+  	font-size: 18
+  }
+
+  header #logo {
+  	font-size: 18
+  }
+
+  footer {
+    display: block;    
+    text-align: center;
+  }
+
+footer #makersacademy-logo img {
+  width: 100%;
+}
+
+}

@@ -3,10 +3,7 @@ require 'tag'
 
 describe Tag do
 
-	  it "should have a tagname when created" do
-	  	# tag = Tag.create(:codeschool)
-	  	# expect(tag.name).to eq :codeschool 
-	 
+	it "should have a tagname when created" do 
 			expect(Tag.count).to eq 0
 			Tag.create(:tagname => "codeschool")
 			expect(Tag.count).to eq 1
@@ -14,6 +11,7 @@ describe Tag do
 			expect(tag.tagname).to eq "codeschool"
 			tag.destroy
 			expect(Tag.count).to eq 0
-  	end
-	
+	end
+
 end
+
