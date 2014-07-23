@@ -59,7 +59,7 @@ class Bookmark < Sinatra::Base
   end
 
   post '/' do
-
+    puts "Again"
     unless session[:user_id].nil?
     	tags = params["tags"].split(" ").map do |tag|
     		Tag.first_or_create(:tagname => tag)

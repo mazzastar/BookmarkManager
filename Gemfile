@@ -7,6 +7,7 @@ gem 'bcrypt-ruby'
 gem 'rack-flash3'
 gem 'sinatra-partial'
 gem 'pg'
+gem 'thin'
 
 group :development, :test do
 	gem 'cucumber-sinatra'

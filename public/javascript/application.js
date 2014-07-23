@@ -37,7 +37,6 @@ function addFavouritesHandler() {
 
 function prepareRemoteFormsHandler() {
   $('.add-link,  .new-user, .new-session' ).click(function(event) {
-    console.log('aaa')
     $.get($(this).attr("href"), function(data) {
        if ($('#ajax-form').length == 0){
          $("#links-container").prepend("<div id='ajax-form'></div>");
@@ -53,17 +52,18 @@ function prepareRemoteFormsHandler() {
 function prepareFormHandler() {
   var form = $('#links-container #ajax-form form');
   form.submit(function(event) {  
-
-    console.log(event.data); 
-  
-    console.log("fire when ready");
+    
     var addLink = function(data) {
       $('#links-container').replaceWith(data);
       $('.link').css({display: "list-item"});
     }
     var data = form.serialize();
     $.post(form.attr('action'), data, addLink);
-    // event.preventDefault();
+
+    if ($('#new_link').length) {
+     event.preventDefault();
+     event.stopPropagation();
+    }
   })
 }
 
