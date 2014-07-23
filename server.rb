@@ -8,8 +8,15 @@ require 'sinatra/partial'
 
 require 'rack-flash'
 
-env = ENV["RACK_ENV"] || "development"
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+configure :development, :test do 
+  env = ENV["RACK_ENV"] || "development"
+  DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+end
+
+configure :production do 
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
+end
+
 require './lib/link'
 require './lib/tag'
 require './lib/user'
