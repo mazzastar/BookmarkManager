@@ -16,3 +16,7 @@ group :development, :test do
 	gem 'database_cleaner'
 	gem 'rest_client'
 end
+
+group :production do 
+	gem 'rest_client'
+end
