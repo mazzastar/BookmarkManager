@@ -11,9 +11,41 @@ header #logo {
   margin: auto 0;
   display: flex;  
   font-family: Helvetica, Arial, Sans-serif;
-  font-size: 32
+  font-size: 32;
+  padding: 4px;
 }
 
+header #login{
+  display: flex;  
+  font-family: Helvetica, Arial, Sans-serif;
+  font-size: 32;
+  /*padding: 4px;*/
+}
+
+header #signup{
+ 
+  display: flex;  
+  font-family: Helvetica, Arial, Sans-serif;
+  font-size: 32;
+  /*padding: 4px;*/
+}
+
+
+header .button{
+  height: 100%;
+  font-size: 18px;
+  padding-left: 10px;
+  width: 100px;
+  border-right: #a9a9a9 2px solid;
+  padding-right: 2px;
+  border-top: #a9a9a9 2px solid;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  border-left: #a9a9a9 2px solid;
+  padding-top: 2px;
+  border-bottom: #a9a9a9 2px solid;
+  padding: 10px;
+}
 .button {
 	color: white;
 	font-family: Helvetica, Arial, Sans-serif;
@@ -29,22 +61,7 @@ header #logo {
 
 }
 
-header .button{
-  height: 100%;
-  font-size: 18px;
-  padding-left: 10px;
-  width: 100px;
 
-
-  border-right: #a9a9a9 2px solid;
-  padding-right: 2px;
-  border-top: #a9a9a9 2px solid;
-  padding-left: 2px;
-  padding-bottom: 2px;
-  border-left: #a9a9a9 2px solid;
-  padding-top: 2px;
-  border-bottom: #a9a9a9 2px solid;
-}
 
 form{
   display: block;
