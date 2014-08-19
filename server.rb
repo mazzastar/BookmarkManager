@@ -8,8 +8,15 @@ require 'sinatra/partial'
 
 require 'rack-flash'
 
-env = ENV["RACK_ENV"] || "development"
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+configure :development, :test do 
+  env = ENV["RACK_ENV"] || "development"
+  DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+end
+
+configure :production do 
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
+end
+
 require './lib/link'
 require './lib/tag'
 require './lib/user'
@@ -52,7 +59,7 @@ class Bookmark < Sinatra::Base
   end
 
   post '/' do
-
+    puts "Again"
     unless session[:user_id].nil?
     	tags = params["tags"].split(" ").map do |tag|
     		Tag.first_or_create(:tagname => tag)
