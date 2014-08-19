@@ -2,7 +2,8 @@
 Bookmark-Manager
 ===
 Click this [Example] to see the website on Heroku.
-A week 5 Makers Academy challenge. This is a site to create bookmarks similar to [Delicious.com]. i.e. account, login, post links, recover your password if necessary.
+
+This is a week 5 Makers Academy challenge: a site to create bookmarks similar to [Delicious.com]. i.e. account, login, post links, recover your password if necessary.
 
 ![](public/Bookmark.png)
 
