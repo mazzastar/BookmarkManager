@@ -1,5 +1,5 @@
 
-Bookmark-Manager
+BookmarkManager
 ===
 Click this [Example] to see the website on Heroku.
 
@@ -47,7 +47,7 @@ open localhost:3000 in your browser
 How to run tests
 ----
 ```sh
-cd Bookmark-Manager
+cd BookmarkManager
 rspec
 cucumber
 ```
